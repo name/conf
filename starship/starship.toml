@@ -1,0 +1,47 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+[character]
+success_symbol = "[\\$](#73DACA)"
+error_symbol = "[\\$](#F7768E)"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[line_break]
+disabled = true
+
+[directory]
+truncation_length = 2
+format = "$path[$read_only]($read_only_style)\\] " 
+
+[hostname]
+ssh_only = false
+#format = '@[$hostname](white) '
+format = 'local '
+disabled = false
+
+[username]
+#format = '[$user](white)'
+format = "\\[charlie@"
+disabled = false
+show_always = true
+
+[git_status]
+disabled = true
+
+[git_branch]
+disabled = true
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = true
+
+[terraform]
+disabled = true
