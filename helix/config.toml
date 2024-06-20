@@ -32,6 +32,7 @@ C-left = "move_prev_long_word_start"
 C-right = "move_next_long_word_start"
 C-up = "move_line_up"
 C-down = "move_line_down"
+"C-s" = ":w"
 
 [keys.insert]
 C-left = "move_prev_long_word_start"
