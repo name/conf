@@ -3,7 +3,7 @@ $ProgressPreference = 'SilentlyContinue'
 # Install Starship prompt
 Invoke-Expression (&starship init powershell)
 function Invoke-Starship-PreCommand {
-    $host.ui.RawUI.WindowTitle = "$pwd `a"
+    $host.ui.RawUI.WindowTitle = Split-Path -Path (Get-Location) -Leaf
 }
 
 # Set location to user profile
