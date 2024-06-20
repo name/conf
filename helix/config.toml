@@ -30,7 +30,17 @@ wrap-indicator = ""  # set wrap-indicator to "" to hide it
 [keys.normal]
 C-left = "move_prev_long_word_start"
 C-right = "move_next_long_word_start"
+C-up = "move_line_up"
+C-down = "move_line_down"
+
+[keys.insert]
+C-left = "move_prev_long_word_start"
+C-right = "move_next_long_word_start"
+C-up = "move_line_up"
+C-down = "move_line_down"
 
 [keys.select]
 C-left = "move_prev_long_word_start"
 C-right = "move_next_long_word_start"
+C-up = "move_line_up"
+C-down = "move_line_down"
