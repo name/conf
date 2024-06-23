@@ -78,6 +78,14 @@
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -NoLogo -command \"ssh cunjur@pi-01\"",
+                "guid": "{cdd06ed0-9875-416d-b3d3-a1c2f9c2841f}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "PI-01",
+                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },
