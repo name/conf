@@ -11,6 +11,38 @@ Set-Location $env:USERPROFILE
 
 Clear-Host
 
+$method = @'
+                                                                                      
+                                      88                               88 88          
+                                ,d    88                               88 ""   ,d     
+                                88    88                               88      88     
+88,dPYba,,adPYba,   ,adPPYba, MM88MMM 88,dPPYba,   ,adPPYba,   ,adPPYb,88 88 MM88MMM  
+88P'   "88"    "8a a8P_____88   88    88P'    "8a a8"     "8a a8"    `Y88 88   88     
+88      88      88 8PP"""""""   88    88       88 8b       d8 8b       88 88   88     
+88      88      88 "8b,   ,aa   88,   88       88 "8a,   ,a8" "8a,   ,d88 88   88,    
+88      88      88  `"Ybbd8"'   "Y888 88       88  `"YbbdP"'   `"8bbdP"Y8 88   "Y888 
+
+'@
+
+$personal = @'
+                                                                                 
+                               88         88                        88           
+                               88   ,d    ""                        88           
+                               88   88                              88           
+88,dPYba,,adPYba,  88       88 88 MM88MMM 88  ,adPPYba,  8b,dPPYba, 88,dPPYba,   
+88P'   "88"    "8a 88       88 88   88    88 a8"     "8a 88P'   "Y8 88P'    "8a  
+88      88      88 88       88 88   88    88 8b       d8 88         88       d8  
+88      88      88 "8a,   ,a88 88   88,   88 "8a,   ,a8" 88         88b,   ,a8"  
+88      88      88  `"YbbdP'Y8 88   "Y888 88  `"YbbdP"'  88         8Y"Ybbd8"'   
+
+'@
+
+if ($env:COMPUTERNAME -like '*laptop*') {
+    Write-Host $method -ForegroundColor Cyan
+} else {
+    Write-Host $personal -ForegroundColor Cyan
+}
+
 $quotes = @(
     "Don't talk to me like I'm a machine, I'm not that."
     "No matter where you go, everyone's connected."
