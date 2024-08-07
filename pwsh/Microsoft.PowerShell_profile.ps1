@@ -37,11 +37,15 @@ $personal = @'
 
 '@
 
-if ($env:COMPUTERNAME -like '*laptop*') {
-    Write-Host $method -ForegroundColor Cyan
-} else {
-    Write-Host $personal -ForegroundColor Cyan
+function watermark {
+    if ($env:COMPUTERNAME -like '*laptop*') {
+        Write-Host $method -ForegroundColor Cyan
+    } else {
+        Write-Host $personal -ForegroundColor Cyan
+    }
 }
+
+watermark
 
 $quotes = @(
     "Don't talk to me like I'm a machine, I'm not that."
@@ -73,13 +77,15 @@ function cert {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
-        [string]$Url
+        [string]$Url,
+        [Parameter(Mandatory = $false)]
+        [int]$Port = 443
     )
 
     $uri = [System.Uri]::new($Url)
     $tcpClient = New-Object System.Net.Sockets.TcpClient
     try {
-        $tcpClient.Connect($uri.Host, $uri.Port)
+        $tcpClient.Connect($uri.Host, $Port)
         $sslStream = New-Object System.Net.Security.SslStream($tcpClient.GetStream())
         try {
             $sslStream.AuthenticateAsClient($uri.Host)
@@ -87,6 +93,7 @@ function cert {
 
             $certInfo = @{
                 Url           = $Url
+                Port          = $Port
                 Subject       = $cert.Subject
                 Issuer        = $cert.Issuer
                 NotBefore     = $cert.GetEffectiveDateString()
@@ -97,14 +104,14 @@ function cert {
             return New-Object -TypeName PSObject -Property $certInfo
         }
         catch {
-            Write-Error "Error checking SSL certificate for $Url : $_"
+            Write-Error "Error checking SSL certificate for ${$Url}:${$Port} : ${$_}"
         }
         finally {
             $sslStream.Dispose()
         }
     }
     catch {
-        Write-Error "Error connecting to $Url : $_"
+        Write-Error "Error connecting to ${$Url}:${$Port} : ${$_}"
     }
     finally {
         $tcpClient.Dispose()
@@ -152,4 +159,34 @@ function lookup {
     }
     
     Write-Output $result
+}
+
+function repos {
+    Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos"
+}
+
+function hst {
+    param (
+        [int]$Count = 10
+    )
+
+    $historyPath = "$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
+    
+    if (Test-Path $historyPath) {
+        $history = Get-Content $historyPath
+        $totalCommands = $history.Count
+
+        if ($Count -gt 0) {
+            $startIndex = [Math]::Max(0, $totalCommands - $Count)
+            $history = $history[$startIndex..($totalCommands-1)]
+        }
+
+        for ($i = 0; $i -lt $history.Count; $i++) {
+            $commandNumber = $totalCommands - $history.Count + $i + 1
+            Write-Output ("{0,6}  {1}" -f $commandNumber, $history[$i])
+        }
+    }
+    else {
+        Write-Warning "History file not found at $historyPath"
+    }
 }
