@@ -43,10 +43,10 @@
         "defaults": 
         {
             "colorScheme": "Gruvbox Dark",
-            "cursorShape": "emptyBox",
+            "cursorShape": "bar",
             "font": 
             {
-                "cellHeight": "1.6",
+                "cellHeight": "1.7",
                 "face": "Berkeley Mono",
                 "size": 10.0
             },
