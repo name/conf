@@ -51,6 +51,7 @@ Sync-File "Windows Terminal Settings" $term_path "./term/settings.json"
 Sync-File "Helix Config" "$env:AppData/helix\config.toml" "./helix/config.toml"
 
 # Backup Neovim config
-Sync-Directory "Neovim Config" "$env:LOCALAPPDATA\nvim" ".\nvim_backup"
+Sync-Directory "Neovim Config" "$env:LOCALAPPDATA\nvim" ".\nvim"
 
 Write-Host "Configuration push completed."
+
