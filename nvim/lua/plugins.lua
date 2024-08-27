@@ -2,6 +2,15 @@ return require('packer').startup(function(use)
 use 'wbthomason/packer.nvim'
   
   -- Add your plugins here, for example:
+
+use {
+    'goolord/alpha-nvim',
+    requires = { 'echasnovski/mini.icons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+}
+
 use {
   'steguiosaur/fullerene.nvim',
   config = function()

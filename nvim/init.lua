@@ -152,3 +152,42 @@ require("bufferline").setup({
 
 vim.api.nvim_set_keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<cr>', {})
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<cr>', {})
+
+
+local alpha = require 'alpha'
+local theme = require 'alpha.themes.dashboard'
+theme.section.header.val =  {
+    '                     .:::!~!!!!!:.',
+    '                  .xUHWH!! !!?M88WHX:.',
+    '                .X*#M@$!!  !X!M$$$$$$WWx:.',
+    '               :!!!!!!?H! :!$!$$$$$$$$$$8X:',
+    '              !!~  ~:~!! :~!$!#$$$$$$$$$$8X:',
+    '             :!~::!H!<   ~.U$X!?R$$$$$$$$MM!',
+    '             ~!~!!!!~~ .:XW$$$U!!?$$$$$$RMM!',
+    '               !:~~~ .:!M"T#$$$$WX??#MRRMMM!',
+    '               ~?WuxiW*`   `"#$$$$8!!!!??!!!',
+    '             :X- M$$$$       `"T#$T~!8$WUXU~',
+    '            :%`  ~#$$$m:        ~!~ ?$$$$$$',
+    '          :!`.-   ~T$$$$8xx.  .xWW- ~""##*"',
+    '.....   -~~:<` !    ~?T#$$@@W@*?$$      /`',
+    'W$@@M!!! .!~~ !!     .:XUW$W!~ `"~:    :',
+    '#"~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`',
+    ':::~:!!`:X~ .: ?H.!u "$$$B$$$!W:U!T$$M~',
+    '.~~   :X@!.-~   ?@WTWo("*$$$W$TH$! `',
+    'Wi.~!X$?!-~   :: ?$$$B$Wu("**$RM!',
+    '$R@i.~~ !    ::   ~$$$$$B$$en:``',
+    '?MXT@Wx.~   ::     ~"##*$$$$M'
+  }
+  -- Set the header color to white
+theme.section.header.opts = {
+    position = "center",
+    hl = "Comment"
+}
+
+-- Create a custom highlight group for white text
+vim.api.nvim_set_hl(0, 'AlphaHeader', { fg = '#ffffff' })
+
+-- Use the custom highlight for the header
+theme.section.header.opts.hl = 'AlphaHeader'
+
+alpha.setup(theme.config)
