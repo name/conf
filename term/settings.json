@@ -47,7 +47,7 @@
             "font": 
             {
                 "cellHeight": "1.6",
-                "face": "Server Mono",
+                "face": "JetBrains Mono",
                 "size": 10.0
             },
             "intenseTextStyle": "bright",
