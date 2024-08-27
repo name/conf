@@ -11,17 +11,6 @@ Set-Location $env:USERPROFILE
 
 Clear-Host
 
-$quotes = @(
-    "Don't talk to me like I'm a machine, I'm not that."
-    "No matter where you go, everyone's connected."
-    "If you're not remembered, then you never existed."
-    "I promise you I'll always be right here. I'm right next to you, forever."
-)
-
-# Pick a random quote
-$quote = $quotes | Get-Random
-Write-Host "$quote"
-
 function ll { Get-ChildItem -Force -ErrorAction SilentlyContinue -ErrorVariable +err | Format-Table -AutoSize }
 
 function ls { Get-ChildItem -Force -ErrorAction SilentlyContinue -ErrorVariable +err | Format-Wide -Column 5 }
