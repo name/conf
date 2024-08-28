@@ -1,8 +1,13 @@
 return require('packer').startup(function(use)
 use 'wbthomason/packer.nvim'
   
-  -- Add your plugins here, for example:
+-- Add your plugins here, for example:
 
+
+use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+}
 use {
     'goolord/alpha-nvim',
     requires = { 'echasnovski/mini.icons' },
