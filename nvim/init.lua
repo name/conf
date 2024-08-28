@@ -32,6 +32,7 @@ vim.api.nvim_set_keymap('v', '<C-z>', '<Esc>u', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<C-y>', '<C-r>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-y>', '<C-o><C-r>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-y>', '<Esc><C-r>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-w>', ':bd<CR>', { noremap = true, silent = true })
 
 require('plugins')
 
