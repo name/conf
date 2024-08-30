@@ -42,7 +42,7 @@
     {
         "defaults": 
         {
-            "colorScheme": "Zeal",
+            "colorScheme": "Gruvbox Dark",
             "cursorShape": "bar",
             "font": 
             {

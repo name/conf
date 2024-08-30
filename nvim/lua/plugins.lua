@@ -3,6 +3,7 @@ use 'wbthomason/packer.nvim'
   
 -- Add your plugins here, for example:
 
+use { "ellisonleao/gruvbox.nvim" }
 
 use {
   'nvim-lualine/lualine.nvim',
@@ -16,13 +17,13 @@ use {
     end
 }
 
-use {
-  'steguiosaur/fullerene.nvim',
-  config = function()
-    -- Optional: Add any configuration here if needed
-    vim.cmd('colorscheme fullerene')
-  end
-}
+-- use {
+--  'steguiosaur/fullerene.nvim',
+--  config = function()
+--    vim.cmd('colorscheme fullerene')
+--  end
+-- }
+
 use {
   'nvim-tree/nvim-tree.lua',
   requires = {
