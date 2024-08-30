@@ -118,6 +118,11 @@ function repos {
     Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos"
 }
 
+function infra {
+  Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos\infra"
+  & nvim
+}
+
 function hst {
     param (
         [int]$Count = 10
