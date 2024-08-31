@@ -4,7 +4,6 @@ function Sync-Directory($name, $source, $destination) {
         Write-Host "$name sync failed - Source not found: $source"
         return
     }
-
     if (!(Test-Path $destination)) {
         New-Item -ItemType Directory -Path $destination | Out-Null
     } else {

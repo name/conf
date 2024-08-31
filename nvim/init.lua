@@ -6,7 +6,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
+vim.opt.shiftwidth = 4
 vim.opt.tabstop = 2
 vim.opt.smartindent = true
 vim.opt.wrap = true
@@ -15,20 +15,34 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.mouse = 'a'
 vim.opt.undofile = true
+vim.g.have_nerd_font = true
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.splitright = true
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.cursorline = true
+vim.opt.scrolloff = 10
+vim.opt.hlsearch = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Set leader key
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Basic keymaps
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>q', '<cmd>quit<cr>', { desc = 'Quit' })
 vim.keymap.set('n', '<leader>d', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+-- Copy
 vim.api.nvim_set_keymap('n', '<leader>a', 'ggVG', {noremap = true})
 vim.api.nvim_set_keymap('v', '<leader>c', '"+y', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>c', '"+yy', {noremap = true, silent = true})
+-- Undo
 vim.api.nvim_set_keymap('n', '<C-z>', 'u', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-z>', '<C-o>u', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-z>', '<Esc>u', { noremap = true, silent = true })
+-- Redo
 vim.api.nvim_set_keymap('n', '<C-y>', '<C-r>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<C-y>', '<C-o><C-r>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<C-y>', '<Esc><C-r>', { noremap = true, silent = true })
@@ -38,13 +52,20 @@ require('plugins')
 
 -- Configure colorscheme
 --require('onedark').load()
-vim.cmd('colorscheme fullerene')
 
 
 -- Configure Treesitter
-require('nvim-treesitter.configs').setup {
-  ensure_installed = { "lua", "vim", "vimdoc", "query" },
-  highlight = { enable = true },
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "lua", "vim", "vimdoc", "query", "javascript", "typescript", "python", "powershell" },
+  sync_install = false,
+  auto_install = true,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true
+  },
 }
 
 -- Configure Telescope
@@ -157,28 +178,29 @@ vim.api.nvim_set_keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<cr>', {})
 
 local alpha = require 'alpha'
 local theme = require 'alpha.themes.dashboard'
-theme.section.header.val =  {
-    '                     .:::!~!!!!!:.',
-    '                  .xUHWH!! !!?M88WHX:.',
-    '                .X*#M@$!!  !X!M$$$$$$WWx:.',
-    '               :!!!!!!?H! :!$!$$$$$$$$$$8X:',
-    '              !!~  ~:~!! :~!$!#$$$$$$$$$$8X:',
-    '             :!~::!H!<   ~.U$X!?R$$$$$$$$MM!',
-    '             ~!~!!!!~~ .:XW$$$U!!?$$$$$$RMM!',
-    '               !:~~~ .:!M"T#$$$$WX??#MRRMMM!',
-    '               ~?WuxiW*`   `"#$$$$8!!!!??!!!',
-    '             :X- M$$$$       `"T#$T~!8$WUXU~',
-    '            :%`  ~#$$$m:        ~!~ ?$$$$$$',
-    '          :!`.-   ~T$$$$8xx.  .xWW- ~""##*"',
-    '.....   -~~:<` !    ~?T#$$@@W@*?$$      /`',
-    'W$@@M!!! .!~~ !!     .:XUW$W!~ `"~:    :',
-    '#"~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`',
-    ':::~:!!`:X~ .: ?H.!u "$$$B$$$!W:U!T$$M~',
-    '.~~   :X@!.-~   ?@WTWo("*$$$W$TH$! `',
-    'Wi.~!X$?!-~   :: ?$$$B$Wu("**$RM!',
-    '$R@i.~~ !    ::   ~$$$$$B$$en:``',
-    '?MXT@Wx.~   ::     ~"##*$$$$M'
-  }
+theme.section.header.val = {
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡲⡾⠛⠉⣉⢈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠆⡀⠀⠀⠀⠀⡄⢠⡐⢤⣿⢸⣧⠄⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢄⢹⡀⣦⣀⣄⣧⣾⣿⣿⣿⣿⣿⣷⣤⣌⣠⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠓⢻⣿⣿⣿⣿⣿⣿⣿⣯⣾⣿⣿⣿⣿⡟⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣆⣿⣿⣿⣿⣟⣛⣛⡛⠻⣿⣿⣿⣿⢃⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣌⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠧⠈⣻⣛⣛⣿⡿⠿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⢦⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⠿⣿⢿⣻⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⣴⠲⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠶⣬⣕⣮⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⣀⣤⣴⣶⣶⣿⣿⣿⠇⠀⠀⢠⣿⣷⡘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣿⣿⣿⣾⣽⣻⣿⣋⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⣨⣿⣿⣿⣦⠉⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠉⢻⡏⣿⣿⣿⣶⣤⣄⡀⠀⠀⠀⠀⠀⠀',
+    '⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣤⣼⡇⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀',
+    '⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀',
+    '⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷',
+    '⣿⣿⣿⣿⣿⣿⡏⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⠏',
+    '⣿⣿⣿⣿⣿⣿⡇⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⣿⢠⣿⡟⢰'
+}
   -- Set the header color to white
 theme.section.header.opts = {
     position = "center",
@@ -251,3 +273,8 @@ require("gruvbox").setup({
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
 
+
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
