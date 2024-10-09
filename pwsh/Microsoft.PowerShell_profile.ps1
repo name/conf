@@ -6,9 +6,6 @@ function Invoke-Starship-PreCommand {
     $host.ui.RawUI.WindowTitle = Split-Path -Path (Get-Location) -Leaf
 }
 
-# Set location to user profile
-Set-Location $env:USERPROFILE
-
 Clear-Host
 
 function ll { Get-ChildItem -Force -ErrorAction SilentlyContinue -ErrorVariable +err | Format-Table -AutoSize }
@@ -119,8 +116,8 @@ function repos {
 }
 
 function infra {
-  Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos\infra"
-  & nvim
+    Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos\infra"
+    & nvim
 }
 
 function hst {
@@ -136,7 +133,7 @@ function hst {
 
         if ($Count -gt 0) {
             $startIndex = [Math]::Max(0, $totalCommands - $Count)
-            $history = $history[$startIndex..($totalCommands-1)]
+            $history = $history[$startIndex..($totalCommands - 1)]
         }
 
         for ($i = 0; $i -lt $history.Count; $i++) {
