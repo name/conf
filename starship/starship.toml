@@ -5,8 +5,8 @@
 add_newline = false
 
 [character]
-success_symbol = "[\\$](#73DACA)"
-error_symbol = "[\\$](#F7768E)"
+success_symbol = "\\$"
+error_symbol = "\\$"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -16,20 +16,23 @@ disabled = true
 disabled = true
 
 [directory]
-truncation_length = 2
-format = "$path[$read_only]($read_only_style)\\] " 
+truncation_length = 1
+format = ":$path[$read_only]($read_only_style)"
+
+[username]
+format = "char"
+disabled = false
+show_always = true
 
 [hostname]
 ssh_only = false
-#format = '@[$hostname](white) '
-format = 'local '
-disabled = false
+format = "@$hostname"
+disabled = true
 
-[username]
-#format = '[$user](white)'
-format = "\\[charlie@"
+[localip]
+ssh_only = false
+format = '@$localipv4'
 disabled = false
-show_always = true
 
 [git_status]
 disabled = true
