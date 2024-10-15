@@ -16,7 +16,7 @@ disabled = true
 disabled = true
 
 [directory]
-truncation_length = 1
+truncation_length = 2
 format = ":$path[$read_only]($read_only_style)"
 
 [username]
@@ -27,12 +27,12 @@ show_always = true
 [hostname]
 ssh_only = false
 format = "@$hostname"
-disabled = true
+disabled = false
 
 [localip]
 ssh_only = false
 format = '@$localipv4'
-disabled = false
+disabled = true
 
 [git_status]
 disabled = true
