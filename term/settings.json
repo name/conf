@@ -16,10 +16,6 @@
             "keys": "ctrl+v"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "command": 
             {
                 "action": "splitPane",
@@ -27,6 +23,10 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         }
     ],
     "copyFormatting": "none",
@@ -59,31 +59,45 @@
         [
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "font": 
+                {
+                    "face": "Berkeley Mono"
+                },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
             },
             {
+                "font": 
+                {
+                    "face": "Berkeley Mono"
+                },
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
+                "font": 
+                {
+                    "face": "Berkeley Mono"
+                },
+                "guid": "{6d4b80fb-8391-4f31-943e-18d67b610879}",
                 "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "PowerShell 7",
+                "startingDirectory": "%USERPROFILE%"
             },
             {
-                "guid": "{b51d0106-03ba-5aaf-9b9d-9cdea8e353ac}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2022",
+                "guid": "{4a1170d4-157f-5140-a266-73983f90fe69}",
+                "hidden": true,
+                "name": "Developer Command Prompt for VS 2019",
                 "source": "Windows.Terminal.VisualStudio"
             },
             {
-                "guid": "{821b74c7-702e-5baa-8603-ed6fd620c116}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2022",
+                "guid": "{9175cdf5-2217-5613-9631-6345c0da38fa}",
+                "hidden": true,
+                "name": "Developer PowerShell for VS 2019",
                 "source": "Windows.Terminal.VisualStudio"
             }
         ]

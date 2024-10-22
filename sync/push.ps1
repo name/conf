@@ -6,7 +6,8 @@ function Sync-Directory($name, $source, $destination) {
     }
     if (!(Test-Path $destination)) {
         New-Item -ItemType Directory -Path $destination | Out-Null
-    } else {
+    }
+    else {
         # Remove existing files and folders in the destination
         Get-ChildItem -Path $destination -Recurse | Remove-Item -Force -Recurse
     }
@@ -51,6 +52,9 @@ Sync-File "Helix Config" "$env:AppData/helix\config.toml" "./helix/config.toml"
 
 # Backup Neovim config
 Sync-Directory "Neovim Config" "$env:LOCALAPPDATA\nvim" ".\nvim"
+
+# Backup Wezterm config
+Sync-File "Wezterm Config" "$env:USERPROFILE\.wezterm.lua" "./wezterm/wezterm.lua"
 
 Write-Host "Configuration push completed."
 
