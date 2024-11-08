@@ -47,14 +47,10 @@ Sync-File "Starship Config" "$env:USERPROFILE/.config/starship.toml" "./starship
 $term_path = (Get-Item -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_*\LocalState\settings.json").FullName
 Sync-File "Windows Terminal Settings" $term_path "./term/settings.json"
 
-# Backup Helix config
-Sync-File "Helix Config" "$env:AppData/helix\config.toml" "./helix/config.toml"
-
 # Backup Neovim config
 Sync-Directory "Neovim Config" "$env:LOCALAPPDATA\nvim" ".\nvim"
 
-# Backup Wezterm config
-Sync-File "Wezterm Config" "$env:USERPROFILE\.wezterm.lua" "./wezterm/wezterm.lua"
+# Backup Glaze WM config from %userprofile%\.glzr\glazewm\config.yaml
+Sync-File "glaze" "$env:USERPROFILE\.glzr\glazewm\config.yaml" ".\glaze\config.yaml"
 
 Write-Host "Configuration push completed."
-

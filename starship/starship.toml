@@ -4,13 +4,9 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-[cmd_duration]
-min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
-format = " took $duration"
-
-[character] # The name of the module we are configuring is "character"
-success_symbol = "" # The "success_symbol" is set to "➜" with color "bold green"
-error_symbol = "" # The "success_symbol" is set to "➜" with color "bold green"
+[character] 
+success_symbol = ""
+error_symbol = ""
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -26,11 +22,10 @@ format = "$path"
 [username]
 format = "char"
 disabled = true
-show_always = true
 
 [hostname]
 ssh_only = false
-#format = "@$hostname"
+#format = "@$hos tname"
 format = "@local &rarr;"
 disabled = true
 

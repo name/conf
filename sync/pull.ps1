@@ -46,13 +46,10 @@ Sync-File "Starship Config" "./starship/starship.toml" "$env:USERPROFILE/.config
 $term_path = (Get-Item -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_*\LocalState\settings.json").FullName
 Sync-File "Windows Terminal Settings" "./term/settings.json" $term_path
 
-# Pull Helix config
-Sync-File "Helix Config" "./helix/config.toml" "$env:AppData/helix\config.toml"
-
 # Pull Neovim config
 Sync-Directory "Neovim Config" ".\nvim" "$env:LOCALAPPDATA\nvim"
 
-# Pull wezterm config
-Sync-File "Wezterm Config" "./wezterm/wezterm.lua" "$env:USERPROFILE\.wezterm.lua"
+# Pull Glaze WM config from %userprofile%\.glzr\glazewm\config.yaml
+Sync-File "Glaze" ".\glaze\config.yaml" "$env:USERPROFILE\.glzr\glazewm\config.yaml"
 
 Write-Host "Configuration pull completed."
