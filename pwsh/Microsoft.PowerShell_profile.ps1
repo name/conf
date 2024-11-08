@@ -8,23 +8,6 @@ function Invoke-Starship-PreCommand {
 
 Clear-Host
 
-$ascii = @"
-        ~+
-
-                 *       +
-           '                  |
-       ()    .-.,="``"=.    - o -
-             '=/_       \     |
-          *   |  '=._    |
-               \     `=./`,        '
-            .   '=.__.=' `='      *
-   +                         +
-        O      *        '       .
-        
-"@
-
-Write-Host $ascii
-
 function ll { Get-ChildItem -Force -ErrorAction SilentlyContinue -ErrorVariable +err | Format-Table -AutoSize }
 
 function ls { Get-ChildItem -Force -ErrorAction SilentlyContinue -ErrorVariable +err | Format-Wide -Column 5 }
@@ -126,6 +109,15 @@ function lookup {
     }
     
     Write-Output $result
+}
+
+function repos {
+    Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos"
+}
+
+function infra {
+    Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos\infra"
+    & nvim
 }
 
 function hst {

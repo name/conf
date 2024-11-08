@@ -106,16 +106,52 @@ window_behavior:
 
 workspaces:
   - name: '1'
+    display_name: 'brave'
+    keep_alive: true
   - name: '2'
+    display_name: 'obsidian'
+    keep_alive: true
   - name: '3'
+    display_name: 'vscode'
+    keep_alive: true
   - name: '4'
+    display_name: 'terminal'
+    keep_alive: true
   - name: '5'
+    display_name: 'outlook'
+    keep_alive: true
   - name: '6'
+    display_name: 'teams'
+    keep_alive: true
   - name: '7'
   - name: '8'
   - name: '9'
 
 window_rules:
+  - commands: ["move --workspace 1"]
+    match:
+      - window_process: { regex: "msedge|brave|chrome" }
+
+  - commands: ["move --workspace 2"]
+    match:
+      - window_process: { equals: "Obsidian" }
+
+  - commands: ["move --workspace 3"]
+    match:
+      - window_process: { equals: "Code" }
+
+  - commands: ["move --workspace 4"]
+    match:
+      - window_process: { equals: "WindowsTerminal" }
+
+  - commands: ["move --workspace 5"]
+    match:
+      - window_process: { equals: "olk" }
+
+  - commands: ["move --workspace 6"]
+    match:
+      - window_process: { equals: "ms-teams" }
+
   - commands: ['ignore']
     match:
       # Ignores any Zebar windows.
