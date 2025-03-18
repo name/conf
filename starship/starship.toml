@@ -23,14 +23,14 @@ truncation_length = 2
 format = "$path"
 
 [username]
-format = "char"
+format = "ops"
 disabled = true
 
 [hostname]
 ssh_only = false
 #format = "@$hos tname"
-format = "@local &rarr;"
-disabled = true
+format = "char@ops "
+disabled = false
 
 [localip]
 ssh_only = false

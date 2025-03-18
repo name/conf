@@ -111,15 +111,6 @@ function lookup {
     Write-Output $result
 }
 
-function repos {
-    Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos"
-}
-
-function infra {
-    Set-Location "C:\Users\cmaddex\OneDrive - SNC Ltd\Repos\infra"
-    & nvim
-}
-
 function hst {
     param (
         [int]$Count = 10
@@ -143,5 +134,68 @@ function hst {
     }
     else {
         Write-Warning "History file not found at $historyPath"
+    }
+}
+
+function tree {
+    param (
+        [string]$path = ".",
+        [string[]]$ignore = @(".git", "__pycache__", "node_modules", ".idea", ".vscode"),
+        [int]$max_depth = $null,
+        [string]$output = $null
+    )
+  
+    function get_directory_tree {
+        param (
+            [string]$root_path = ".",
+            [string[]]$ignore_patterns = @(),
+            [int]$max_depth = $null,
+            [int]$current_depth = 0,
+            [string]$indent = ""
+        )
+  
+        if ($null -ne $max_depth -and $current_depth -gt $max_depth) { return }
+  
+        try {
+            $items = Get-ChildItem -Path $root_path -ErrorAction Stop | Sort-Object Name
+        }
+        catch {
+            Write-Output "$indent├── [Access Denied]"
+            return
+        }
+  
+        $total_items = ($items | Where-Object {
+                $item_name = $_.Name
+                -not ($ignore_patterns | Where-Object { $item_name -like "*$_*" })
+            }).Count
+  
+        $current_item = 0
+  
+        foreach ($item in $items) {
+            $should_ignore = $ignore_patterns | Where-Object { $item.Name -like "*$_*" }
+            if ($should_ignore) { continue }
+  
+            $current_item++
+            $is_last = ($current_item -eq $total_items)
+            $prefix = if ($is_last) { "└── " } else { "├── " }
+            $new_indent = if ($is_last) { $indent + "    " } else { $indent + "│   " }
+  
+            Write-Output "$indent$prefix$($item.Name)"
+            if ($item.PSIsContainer) {
+                get_directory_tree -root_path $item.FullName -ignore_patterns $ignore_patterns -max_depth $max_depth -current_depth ($current_depth + 1) -indent $new_indent
+            }
+        }
+    }
+  
+    $absolute_path = (Resolve-Path $path).Path
+    $tree_output = @("$absolute_path")
+    $tree_output += get_directory_tree -root_path $absolute_path -ignore_patterns $ignore -max_depth $max_depth
+  
+    if ($output) {
+        $tree_output | Out-File -FilePath $output -Encoding utf8
+        Write-Host "Tree structure written to $output"
+    }
+    else {
+        $tree_output
     }
 }
